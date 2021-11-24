@@ -19,3 +19,10 @@ export class Analytics extends Pub implements Sub {
     this.publish(event);
   }
 }
+
+export class Audit extends Pub implements Sub {
+  notify(event: string) {
+    console.log(`Audit: ${event}`);
+    this.publish(event);
+  }
+}

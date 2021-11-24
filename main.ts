@@ -1,15 +1,17 @@
-import { Analytics, Logger } from "./Sub";
+import { Analytics, Audit, Logger } from "./Sub";
 import Pub from "./Pub";
 
-const hub = new Pub();
+const node0 = new Pub();
 
-const sub1 = new Logger();
-const sub2 = new Logger();
-const sub3 = new Analytics();
+const node1 = new Logger();
+const node2 = new Logger();
+const node3 = new Analytics();
+const node4 = new Audit();
 
-sub1.register(sub2);
-hub.register(sub3);
-hub.register(sub1);
+node1.register(node2);
+node2.register(node4);
+node0.register(node3);
+node0.register(node1);
 
-hub.publish("call");
-hub.publish("call");
+node0.publish("call");
+// node0.publish("call");
